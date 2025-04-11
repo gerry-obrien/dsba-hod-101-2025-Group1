@@ -45,6 +45,9 @@ def extract_order(filename):
                 m = re.search(r"€\s*(\d+(?:[\.,]\d+)?)", amount_text)
                 if m:
                     delivery_fee = m.group(1).replace(",", ".")
+                
+                else:
+                        delivery_fee = "free"
             # If the label suggests it is the total amount...
             elif label == "total" or label.startswith("total"):
                 m = re.search(r"€\s*(\d+(?:[\.,]\d+)?)", amount_text)
@@ -118,5 +121,3 @@ def extract_customer(filename):
         "phone_number": customer_phone
     }
     return customer_info
-
-
