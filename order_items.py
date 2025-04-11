@@ -1,8 +1,8 @@
-from beautifulsoup4 import BeautifulSoup
+from bs4 import BeautifulSoup
 
 def order_items(file_name):
     """
-    Function to output the order items with their quantities and prices for a given order receipt html file.
+    Function to output the order items with their quantities and prices for an input order receipt html file.
     :param file_name: the name of the html file
     :return: A dictionary with the order items in the required format
     """
@@ -15,7 +15,7 @@ def order_items(file_name):
     items = []
     prices = []
     for row in rows:
-        # Find all table cells (both headers and data)
+        # Find all relevant table cells with the different relevant values defined by their p style
         cells = row.find_all(["td", "th"])
         for cell in cells:
             p_tags_quantities = cell.find_all("p", attrs={
@@ -32,7 +32,7 @@ def order_items(file_name):
                 "style": "font-family:HelveticaNeue, helvetica, arial, sans-serif; font-size:15px; line-height:1.4em; color:#828585; text-align:right; font-weight:normal; text-decoration:none; Margin:0 0 0 8px; padding:0; mso-line-rule:exactly; white-space:nowrap;"})
             for p in p_tags_prices:
                 prices.append(p.get_text(strip=True))
-
+    # Clean prices and quantities because of strings with extra values
     cleaned_prices = []
     for price in prices:
         numeric = price.replace('\xa0€', '').replace(',', '.').strip()
@@ -44,7 +44,7 @@ def order_items(file_name):
         quant = quantity.replace('x', '').strip()
         quant = int(quant)
         cleaned_quantities.append(quant)
-
+    # Create dictionary
     dictionary = []
     for i in range(len(items)):
         temp = {"name": items[i],
@@ -52,4 +52,3 @@ def order_items(file_name):
                 "price": cleaned_prices[i]}
         dictionary.append(temp)
     return dictionary
-
