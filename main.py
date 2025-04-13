@@ -21,8 +21,8 @@ if __name__ == "__main__":
                 ## Create a full dictionnary for each of our orders
                 order_dict = {
                     "order": order,
-                    "customer": customer,
                     "restaurant": restaurant,
+                    "customer": customer,
                     "order_items": oi
                 }
 
