@@ -58,10 +58,11 @@ def extract_order(filename):
         order_datetime = None
 
     order = {
-        "number": order_number,
-        "total_paid": order_total_paid,
+        "order_datetime": order_datetime,
+        "order_number": order_number,
         "delivery_fee": delivery_fee,
-        "datetime": order_datetime
+        "order_total_paid": order_total_paid
+
     }
     return order
 

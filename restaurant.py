@@ -19,6 +19,7 @@ def parse_restaurant(link):
     phone_number = phone_match.group(1) if phone_match else None
 
     ### Add every information retrieved to populate the dictionary
+
     restaurant["name"] = name
     restaurant["adress"] = adress[0].text.strip()
     restaurant["city"] = adress[1].text.strip()
