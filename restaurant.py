@@ -24,6 +24,6 @@ def parse_restaurant(link):
     restaurant["city"] = adress[1].text.strip()
     restaurant["postcode"] = adress[2].text.strip()
     restaurant["phone_number"] = phone_number
-    resto = {"restaurant": restaurant}
 
-    return resto
+
+    return restaurant
